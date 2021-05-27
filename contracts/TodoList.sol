@@ -1,12 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.5.0;
 
 contract TodoList{
     uint public taskCount = 0;
-
-    constructor() public{
-        createTask("First test task");
-
-    }
 
     struct Task {
         uint id;
@@ -19,6 +14,11 @@ contract TodoList{
     function createTask(string memory _content) public {
         taskCount++;
         tasks[taskCount] = Task(taskCount, _content, false);
+    }
+ 
+    constructor() public{
+        createTask("First test task");
+
     }
 
 }
