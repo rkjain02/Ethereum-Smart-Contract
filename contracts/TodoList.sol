@@ -1,3 +1,5 @@
+//SPDX-License-Indentified: MIT
+
 pragma solidity >=0.5.0;
 
 contract TodoList{
@@ -16,7 +18,7 @@ contract TodoList{
         tasks[taskCount] = Task(taskCount, _content, false);
     }
  
-    constructor() public{
+    constructor() {
         createTask("First test task");
 
     }

@@ -1,9 +1,8 @@
- const Web3 = require('web3')
+ //onst Web3 = require('web3')
 
 App = {
-
-    contracts: {},
     loading: false,
+    contracts: {},
 
     load: async () => {
        await App.loadWeb3()
@@ -78,10 +77,15 @@ App = {
 
         const taskCount = await App.todoList.taskCount()
 
+        console.log(taskCount.s)
+
         const $taskTemplate = $('.taskTemplate')
 
-        for(var i = 1; i <= taskCount; i++) {
-            const task = await App.todoList.tasks(i)
+
+        for(var i = 1; i <= taskCount.s; i++) {
+            console.log('loop')
+            const task = await App.todoList.tasks(0x1)
+            console.log(task)
             const taskID = task[0].toNumber()
             const taskContent = task[1]
             const taskCompleted = task[2]
@@ -91,7 +95,7 @@ App = {
             $newTaskTemplate.find('input')
                             .prop('name', taskID)
                             .prop('checked', taskCompleted)
-                            .on('click', App.toggleCompleted)
+                            //.on('click', App.toggleCompleted)
             
             if (taskCompleted) {
                 $('#completedTaskList').append($newTaskTemplate)
@@ -100,10 +104,9 @@ App = {
             }
             
             $newTaskTemplate.show()
+            console.log($newTaskTemplate)
         }
-
-
-
+        
     },
 
     setLoading: (boolean) => {
